@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dichtpiet</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="bg-gray-500 relative">
+
+<img id="logo-middle" src="../assets/icon.png" alt="Logo" class="max-h-20 fixed top-2 left-1/2 transform -translate-x-1/2 p-1">
+<div id="container1" class="container shadow-lg p-1 bg-cyan-700 rounded text-white">
+    <!-- Chat Container -->
+    <div id="chatContainer" class="flex flex-col items-center mb-4">
+        <h1 class="text-3xl font-bold mx-auto pt-0">Dichtpiet - Sinterklaasgedicht hulp</h1>
+        <div class="mb-4">
+            <label for="nameInput" class="block text-sm font-medium text-gray-700">Enter your name:</label>
+            <input type="text" style="width:40vw" id="nameInput" class="mt-1 p-2 border rounded-md text-black h-10" />
+
+            <label for="hobbyInput" class="block text-sm font-medium text-gray-700 mt-4">Enter your hobby:</label>
+            <input type="text" style="width:40vw" id="hobbyInput" class="mt-1 p-2 border rounded-md text-black h-10" />
+
+            <button id="submitButton" onclick="retrieveMessage()" class="h-10 mt-4 px-6 py-2 text-white rounded-md bg-blue-500">Submit</button>
+        </div>
+    </div>
+</div>
+<div id="loadingSpinner" class="spinner"></div>
+
+
+<div id="responseHider" class="hidden">
+    <div id="responseContainer" class="flex flex-col ml-3 w-full">
+        <!-- User Input Box -->
+        <div class="response-grid mt-4">
+        </div>
+        <!-- Response Box -->
+        <div class="response-grid mt-4">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="scripts.js" defer></script>
+</body>
+
+</html>
