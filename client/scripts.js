@@ -45,19 +45,19 @@ async function retrieveMessage() {
             const container = document.createElement('div');
             container.classList.add('mt-4'); // Add margin at the top
 
-            // Create new user input textbox
+            // Create new user input textbox with role
             const userInputBox = document.createElement('textarea');
             userInputBox.classList.add('p-4', 'border', 'rounded-md', 'w-full', 'mt-4');
             userInputBox.style.width = '100%'; // Set width to 100% of the parent container
-            userInputBox.value = `${name}, ${hobby}`;
+            userInputBox.value = `User: ${name}, ${hobby}`; // Adding user role
             userInputBox.readOnly = true;
             userInputBox.rows = userInputBox.value.split('\n').length; // Set rows based on number of lines
 
-            // Create new response textbox
+            // Create new response textbox with role
             const responseBox = document.createElement('textarea');
             responseBox.classList.add('p-4', 'border', 'rounded-md', 'w-full', 'mt-4');
             responseBox.style.width = '100%'; // Set width to 100% of the parent container
-            responseBox.value = response.kwargs.content;
+            responseBox.value = `AI Response: ${response.kwargs.content}`; // Adding AI response role
             responseBox.readOnly = true;
             responseBox.rows = responseBox.value.split('\n').length; // Set rows based on number of lines
 

@@ -13,19 +13,20 @@
 
 <body class="bg-gray-500 relative">
 
-<img id="logo-middle" src="../assets/icon.png" alt="Logo" class="max-h-20 fixed top-2 left-1/2 transform -translate-x-1/2 p-1">
+<img id="logo-middle" src="../assets/icon.png" alt="Logo" class="">
 <div id="container1" class="container shadow-lg p-1 bg-cyan-700 rounded text-white">
     <!-- Chat Container -->
     <div id="chatContainer" class="flex flex-col items-center mb-4">
-        <h1 class="text-3xl font-bold mx-auto pt-0">Dichtpiet - Sinterklaasgedicht hulp</h1>
+        <h1 class="text-3xl font-bold mx-auto pt-0">Dichtpiet</h1>
+        <p class="text-2xl mx-auto pt-0">Dit is een chatbot die met behulp van een naam en een hobby. Een Sinterklaasgedicht voor je schrijft.</p>
         <div class="mb-4">
-            <label for="nameInput" class="block text-sm font-medium text-gray-700">Enter your name:</label>
+            <label for="nameInput" class="block text-sm font-medium text-gray-700">Naam:</label>
             <input type="text" style="width:40vw" id="nameInput" class="mt-1 p-2 border rounded-md text-black h-10" />
 
-            <label for="hobbyInput" class="block text-sm font-medium text-gray-700 mt-4">Enter your hobby:</label>
+            <label for="hobbyInput" class="block text-sm font-medium text-gray-700 mt-4">Hobby:</label>
             <input type="text" style="width:40vw" id="hobbyInput" class="mt-1 p-2 border rounded-md text-black h-10" />
 
-            <button id="submitButton" onclick="retrieveMessage()" class="h-10 mt-4 px-6 py-2 text-white rounded-md bg-blue-500">Submit</button>
+            <button id="submitButton" onclick="retrieveMessage()" class="h-10 mt-4 px-6 py-2 text-white rounded-md bg-yellow-500">Submit</button>
         </div>
     </div>
 </div>

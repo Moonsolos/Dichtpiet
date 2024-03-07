@@ -1,15 +1,18 @@
-/* index.css */
-
-@import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    font-family: 'Kode Mono', monospace;
     background: linear-gradient(to bottom, #ffffbd, #ffffbd); /* Adjust the background gradient */
 }
+
+#logo-middle {
+    max-height: 80px;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+}
+
 
 .container {
     opacity: 0.95;
