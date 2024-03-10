@@ -1,4 +1,4 @@
-// Definieer de variabelen voor de DOM-elementen
+//var
 const nameInput = document.getElementById('nameInput');
 const hobbyInput = document.getElementById('hobbyInput');
 const submitButton = document.getElementById('submitButton');
@@ -6,8 +6,10 @@ const loadingSpinner = document.getElementById('loadingSpinner');
 const responseHider = document.getElementById('responseHider');
 const responseContainer = document.getElementById('responseContainer'); // Zorg ervoor dat je responseContainer definieert
 
-// Array om berichtgeschiedenis bij te houden
+// Array to store messageHistory
 const messageHistory = [];
+
+
 
 async function sendChatMessage(name, hobby, conversationHistory) {
     try {
@@ -48,33 +50,33 @@ async function retrieveMessage() {
         if (response && response.kwargs && response.kwargs.content) { // Update hier
             responseHider.style.display = 'block';
 
-            // Create a new container for the user input and response pair
+            // Create container for new input and response
             const container = document.createElement('div');
-            container.classList.add('mt-4'); // Add margin at the top
+            container.classList.add('mt-4');
 
-            // Create new user input textbox with role
+            // Create input textbox with role
             const userInputBox = document.createElement('textarea');
             userInputBox.classList.add('p-4', 'border', 'rounded-md', 'w-full', 'mt-4');
-            userInputBox.style.width = '100%'; // Set width to 100% of the parent container
-            userInputBox.value = `User: ${name}, ${hobby}`; // Adding user role
+            userInputBox.style.width = '100%';
+            userInputBox.value = `User: ${name}, ${hobby}`; // User role
             userInputBox.readOnly = true;
-            userInputBox.rows = userInputBox.value.split('\n').length; // Set rows based on number of lines
+            userInputBox.rows = userInputBox.value.split('\n').length;
 
-            // Create new response textbox with role
+            // Create response textbox with role
             const responseBox = document.createElement('textarea');
             responseBox.classList.add('p-4', 'border', 'rounded-md', 'w-full', 'mt-4');
-            responseBox.style.width = '100%'; // Set width to 100% of the parent container
-            responseBox.value = `AI Response: ${response.kwargs.content}`; // Adding AI response role
+            responseBox.style.width = '100%';
+            responseBox.value = `AI Response: ${response.kwargs.content}`; // AI Response role
             responseBox.readOnly = true;
-            responseBox.rows = responseBox.value.split('\n').length; // Set rows based on the number of lines
+            responseBox.rows = responseBox.value.split('\n').length;
 
-            // Create input field for user response
+            // Create textbox for user response
             const userResponseInput = document.createElement('textarea');
             userResponseInput.classList.add('p-4', 'border', 'rounded-md', 'w-full', 'mt-4');
-            userResponseInput.style.width = '100%'; // Set width to 100% of the parent container
+            userResponseInput.style.width = '100%';
             userResponseInput.placeholder = 'Type your response here...';
 
-            // Create button to submit user response
+            // Create new submitbutton
             const submitResponseButton = document.createElement('button');
             submitResponseButton.classList.add('h-10', 'mt-4', 'px-6', 'py-2', 'text-white', 'rounded-md', 'bg-green-500');
             submitResponseButton.innerText = 'Submit Response';
@@ -82,7 +84,7 @@ async function retrieveMessage() {
                 await submitUserResponse(name, hobby, userResponseInput.value, responseBox, userResponseInput);
             };
 
-            // Append new textboxes and button to the response container
+            // Appendings
             container.appendChild(userInputBox);
             container.appendChild(responseBox);
             container.appendChild(userResponseInput);
@@ -90,7 +92,7 @@ async function retrieveMessage() {
             responseContainer.appendChild(container);
 
         } else {
-            // Update the error message to use responseBox
+            // Error message for response box
             const errorMessage = document.createElement('textarea');
             errorMessage.classList.add('p-4', 'border', 'rounded-md', 'w-full', 'mt-4');
             errorMessage.style.width = '100%';
@@ -109,23 +111,26 @@ async function retrieveMessage() {
     }
 }
 function generateUniqueId() {
-    return Math.random().toString(36).substr(2, 9); // Genereer een willekeurige tekenreeks
+    return Math.random().toString(36).substr(2, 9); // Generate random token
 }
 
 async function submitUserResponse(name, hobby, userResponse, responseBox, userResponseInput) {
     try {
-        // Combine the conversation history with de new user response
+        // Combine conversation history with the new user response
         const conversationHistory = [...messageHistory, { user: userResponse }];
 
-        // Bij het verzenden van een vraag naar de server
-        const questionId = generateUniqueId(); // Genereer een unieke identificatie voor de vraag
-        // Stuur de vraag naar de server samen met de unieke identificatie
+
+        // Sending new question to server
+
+
+        const questionId = generateUniqueId(); // generate ID
+        // send question to server with new ID
         const requestData = {
             name,
             hobby,
             userResponse,
             conversationHistory,
-            questionId // Voeg de unieke identificatie toe aan de data die naar de server wordt gestuurd
+            questionId
         };
         const response = await fetch('http://localhost:8000/submit-response', {
             method: 'POST',
@@ -141,21 +146,21 @@ async function submitUserResponse(name, hobby, userResponse, responseBox, userRe
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        // Handle the server's response
+        // Handle server response
         const responseData = await response.json();
         console.log('Received response from server:', responseData);
 
-        // Update the response box with the server response
+        // Update the response box
         if (responseData.message) {
             responseBox.value = `Server Response: ${responseData.message}`;
         } else {
             responseBox.value = 'No valid response content found.';
         }
 
-        // Clear the user response input
+        // Clearuser response input
         userResponseInput.value = '';
 
-        // Add the new question and response to the message history
+        // Add new question and response to the message history
         messageHistory.push({ user: `User: ${name}, ${hobby}` });
         messageHistory.push({ bot: responseData });
 
